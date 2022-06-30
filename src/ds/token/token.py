@@ -5,75 +5,99 @@ class Token(object):
     def __init__(self, typeToken):
         self.__typeToken = typeToken
 
+    @property
     def getTypeToken(self):
         return self.__typeToken
 
+    def __str__(self) -> str:
+        pass
+
 class ActorToken(Token):
     __name = None
-    __group = None
-    def __init__(self, typeToken, name, group):
+    __groupId = None
+    def __init__(self, typeToken, name, groupId):
         super().__init__(typeToken)
         self.__name = name
-        self.__group = group
+        self.__groupId = groupId
 
+    @property
     def getName(self):
         return self.__name
 
-    def getGroup(self):
-        return self.__group
+    @property
+    def getGroupId(self):
+        return self.__groupId
+
+    def __str__(self) -> str:
+        return self.getTypeToken + " " + self.getName + " " + self.getGroupId
 
 class ArrowToken(Token):
     __source = None
     __target = None      
-    __attribute = None   #Type of relation of arrow
-    def __init__(self, typeToken, source, target, attributes):
+    __typeRelation = None   #Type of relation of arrow
+    def __init__(self, typeToken, source, target, typeRelation):
         super().__init__(typeToken)
         self.__source = source
         self.__target = target
-        self.__attribute = attributes
+        self.__typeRelation = typeRelation
 
+    @property
     def getSource(self):
         return self.__source
 
+    @property
     def getTarget(self):
         return self.__target
 
-    def getAttributes(self):
-        return self.__attribute
+    @property
+    def getTypeRelation(self):
+        return self.__typeRelation
+
+    def __str__(self) -> str:
+        return self.getTypeToken + " " + str(self.getSource) + " " + str(self.getTarget) + " " + str(self.getTypeRelation)
 
 class UsecaseToken(Token):
     __name = None         #Name of usecase
-    __group = None        #Group ID
-    def __init__(self, typeToken, name, group, attributes):
+    __groupId = None        #Group ID
+    def __init__(self, typeToken, name, groupId):
         super().__init__(typeToken)
         self.__name = name
-        self.__group = group
-        self.__attributes = attributes
+        self.__groupId = groupId
 
+    @property
     def getName(self):
         return self.__name
 
-    def getGroup(self):
-        return self.__group
+    @property
+    def getGroupId(self):
+        return self.__groupId
+    
+    def __str__(self) -> str:
+        return self.getTypeToken + " " + self.getName + " " + self.getGroupId
+
+    
 
 class ClassToken(Token):
     __name = None         #Name of class
-    __group = None        #Group ID of classes
+    __groupId = None        #Group ID of classes
     __attributes = None   #List attributes of a class
-    def __init__(self, typeToken, name, group, attributes):
+    def __init__(self, typeToken, name, groupId, attributes):
         super().__init__(typeToken)
         self.__name = name
-        self.__group = group
+        self.__groupId = groupId
         self.__attributes = attributes
 
+    @property
     def getName(self):
         return self.__name
 
-    def getGroup(self):
-        return self.__group
+    @property
+    def getGroupId(self):
+        return self.__groupId
 
+    @property
     def getAttributes(self):
         return self.__attributes  
     
-    
-        
+    def __str__(self) -> str:
+        return self.getTypeToken() + " " + self.getName() + " " + self.getGroupId() + " " + self.getAttributes()
