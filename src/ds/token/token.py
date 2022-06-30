@@ -8,15 +8,13 @@ class Token(object):
     def getTypeToken(self):
         return self.__typeToken
 
-class Token_Actor(Token):
+class ActorToken(Token):
     __name = None
     __group = None
-    __attribute = None
-    def __init__(self, typeToken, name, group, attributes):
+    def __init__(self, typeToken, name, group):
         super().__init__(typeToken)
         self.__name = name
         self.__group = group
-        self.__attributes = attributes
 
     def getName(self):
         return self.__name
@@ -24,10 +22,7 @@ class Token_Actor(Token):
     def getGroup(self):
         return self.__group
 
-    def getAttributes(self):
-        return self.__attributes
-
-class Token_Arrow(Token):
+class ArrowToken(Token):
     __source = None
     __target = None
     __attributes = None
@@ -46,6 +41,25 @@ class Token_Arrow(Token):
     def getAttributes(self):
         return self.__attributes
 
+
+class ClassToken(Token):
+    __name = None
+    __group = None
+    __attributes = None
+    def __init__(self, typeToken, name, group, attributes):
+        super().__init__(typeToken)
+        self.__name = name
+        self.__group = group
+        self.__attributes = attributes
+
+    def getName(self):
+        return self.__name
+
+    def getGroup(self):
+        return self.__group
+
+    def getAttributes(self):
+        return self.__attributes
     
     
         
