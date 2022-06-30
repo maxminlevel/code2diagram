@@ -1,20 +1,32 @@
-from collections import UserDict
+from itertools import count
 from typing import Any
+class FlexibleObject():
+    instance = dict()
+    count = 0
+    
+    def __init__(self):
+        self.attribute = dict()
+        self.canAddNew = True
+        self.id = count
+        self.type = ""
+        FlexibleObject.count += 1
+        FlexibleObject.instance[self.id] = self
 
-class FlexibleObject(UserDict):
-    def _lookup(self, name):
-        for item in self.data:
-            if item.id == name:
-                return item
+    def __disable_add_atrribute__(self):
+        self.canAddNew = False
 
-    def __getitem__(self, name):
-        return self._lookup(name)
+    def __getitem__(self, key: str) -> Any:
+        if key in self.attribute:
+            return self.attribute[key]
+        else:
+            return None
+    
+    def  __setitem__(self, key: str, value: Any) -> bool:
+        if self.canAddNew or key in self.attribute.keys:
+            self.attribute[key] = value
+            return True
+        else:
+            return False
 
-    def __call__(self, name):
-        return self._lookup(name)
-
-    def __setattr__(self, __name: str, __value: Any) -> None:
-        return super().__setattr__(__name, __value)
-
-a = FlexibleObject()
-
+    def __str__(self):
+        return str(self.attribute)
