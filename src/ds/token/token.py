@@ -24,13 +24,13 @@ class ActorToken(Token):
 
 class ArrowToken(Token):
     __source = None
-    __target = None
-    __attributes = None
+    __target = None      
+    __attribute = None   #Type of relation of arrow
     def __init__(self, typeToken, source, target, attributes):
         super().__init__(typeToken)
         self.__source = source
         self.__target = target
-        self.__attributes = attributes
+        self.__attribute = attributes
 
     def getSource(self):
         return self.__source
@@ -39,13 +39,13 @@ class ArrowToken(Token):
         return self.__target
 
     def getAttributes(self):
-        return self.__attributes
+        return self.__attribute
 
 
 class ClassToken(Token):
-    __name = None
-    __group = None
-    __attributes = None
+    __name = None         #Name of class
+    __group = None        #Group ID of classes
+    __attributes = None   #List attributes of a class
     def __init__(self, typeToken, name, group, attributes):
         super().__init__(typeToken)
         self.__name = name
@@ -59,7 +59,7 @@ class ClassToken(Token):
         return self.__group
 
     def getAttributes(self):
-        return self.__attributes
+        return self.__attributes  
     
     
         
