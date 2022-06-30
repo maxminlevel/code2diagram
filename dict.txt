@@ -1,0 +1,29 @@
+{
+    attribute: {
+            name: "Simple",
+            type: "Usecase",
+            author: ...
+        }
+    data: {
+        node:[
+            {
+                name:
+                type:
+                group:
+                attribute:{
+                    ...
+                }
+            } // Đây là 1 token
+        ]
+        connection:[
+            {
+                source:
+                target:
+                attribute:{
+                    ...
+                }
+            } // Đây là 1 connection
+        ]
+    }
+}
+
