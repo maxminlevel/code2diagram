@@ -3,3 +3,7 @@
 # - Has different overload parse methods for every FileContent concrete class
 # - Input: Code content (FileContent)
 # - Output: List of tokens 
+from ds.token import *
+
+class Lexer(object):
+    pass
