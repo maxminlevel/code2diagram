@@ -1,6 +1,6 @@
 from itertools import count
 from typing import Any
-class FlexibleObject():
+class FlexibleObject:
     instance = dict()
     count = 0
     
