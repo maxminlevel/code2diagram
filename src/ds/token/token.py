@@ -41,6 +41,20 @@ class ArrowToken(Token):
     def getAttributes(self):
         return self.__attribute
 
+class UsecaseToken(Token):
+    __name = None         #Name of usecase
+    __group = None        #Group ID
+    def __init__(self, typeToken, name, group, attributes):
+        super().__init__(typeToken)
+        self.__name = name
+        self.__group = group
+        self.__attributes = attributes
+
+    def getName(self):
+        return self.__name
+
+    def getGroup(self):
+        return self.__group
 
 class ClassToken(Token):
     __name = None         #Name of class
