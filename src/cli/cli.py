@@ -11,7 +11,7 @@ parser.add_argument('-o','--output', help='Output file diagram as image(jpeg, jp
 parser.add_argument('-fi','--format-input', help='Describe custom input format file', required=False)
 parser.add_argument('-fo','--format-output', help='Describe custom output format file', required=False)
 args = vars(parser.parse_args())
-print(args)
+
 if (args['token']):
     # Generate new type token at here
     # Input: File
