@@ -1,8 +1,15 @@
 # Contain information about each token of our language
+import enum
+
+class TypeToken(enum.Enum):
+    Actor = 1
+    Usecase = 2
+    Class = 3
+    Arrow = 4
 
 class Token(object):
     __typeToken = None
-    def __init__(self, typeToken):
+    def __init__(self, typeToken : TypeToken):
         self.__typeToken = typeToken
 
     @property

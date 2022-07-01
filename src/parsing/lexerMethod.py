@@ -48,23 +48,13 @@ class XML_input(LexerMethod):
     def analyze(self, fileContent):
         pass
 
-class TXT_input(LexerMethod): 
-    def __init__(self):
-        super().__init__('txt')
-
-    def analyze(self, fileContent):
-        with open(fileContent, 'r') as f:
-            pass
-
 class CSV_input(LexerMethod): 
     def __init__(self):
         super().__init__('csv')
 
     def analyze(self, fileContent):
-        with open(fileContent, 'r') as f:
-            pass
+        pass
 
 JSON_input()
 XML_input()
-TXT_input()
 CSV_input()
