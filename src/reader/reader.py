@@ -4,34 +4,32 @@
 # - Output: instance of FileContent
 # - Use Strategy design pattern to read the file (based on its extension).
 
-import json
+
 from ds.fileContent.fileContent import FileContent
+from ds.fileContent.method import FileContentMethod
 from ds.object.flexible import FlexibleObject
+import os
 
-
-class Reader(FlexibleObject):
+class Reader():
     def __init__(self, file_path):
-        super().__init__()
-        self.input = self.absolute_path(file_path)
-        self.input_type = self.get_extension(file_path)
-        self.output = FileContent()
+        # super().__init__()
+        self.type = "Reader"
+        # input relative path with main.py
+        # --> relative paht with reader.py
+        self.file = file_path 
+        self.file_name, self.extension = os.path.splitext(self.file)
+        self.fileContent = None
 
-    def absolute_path(self, file):
-        return ""
+    def stragety(self) -> None:
+        self.fileContent = FileContent()
+        self.fileContent.assing_method(Reader.select_type_file_content(self.extension))
+        self.fileContent.read(self.file)       
 
-    def get_extension(self, file):
-        return "json"
-
-    def stragety(self):
-        self.output
+    def select_type_file_content(extension: str):
+        method = FileContentMethod.instance[extension[1:]]
+        if not method:
+            raise TypeError("This type isn't supported: {}".format(type(extension)))
+        return method
 
     def get_output(self):
-        obj = {"attribute": {"name": "Simple","type": "Usecase"},"data": [{"name": "Man","uniq": "1","type": "actor","group": "","attribute": {}},{"name": "do some thing","uniq": "2","type": "usecase","group": "","attribute": {}},{"source": 1,"target": 2,"attribute": {}}]}        
-        data = json.loads(obj)
-        return data
-
-        
-        
-        
-
-    
+        return self.fileContent
