@@ -7,6 +7,14 @@ class TypeToken(enum.Enum):
     Class = 3
     Arrow = 4
 
+class TypeRelation(enum.Enum):
+    ISA = 1
+    Extend = 2
+    Include = 3
+    OneToOne = 4
+    OneToMany = 5
+    ManyToMany = 6
+
 class Token(object):
     __typeToken = None
     def __init__(self, typeToken : TypeToken):
@@ -42,7 +50,7 @@ class ArrowToken(Token):
     __source = None
     __target = None      
     __typeRelation = None   #Type of relation of arrow
-    def __init__(self, typeToken, source, target, typeRelation):
+    def __init__(self, typeToken, source, target, typeRelation: TypeRelation):
         super().__init__(typeToken)
         self.__source = source
         self.__target = target
