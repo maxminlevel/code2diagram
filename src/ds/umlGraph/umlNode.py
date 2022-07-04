@@ -1,3 +1,6 @@
+from functools import singledispatch
+from uuid import uuid4
+from ds.token.token import ArrowToken, ClassToken, UsecaseToken
 class Node:
     def __init__(self, name, type, attributes):
         self.name = name
@@ -10,6 +13,7 @@ class Node:
         return self.name
 
 class NodeFactory:
+    @staticmethod
     @singledispatch
     def create(self, token):
         raise NotImplementedError
@@ -19,6 +23,3 @@ class NodeFactory:
     @create.register(ClassToken)
     def _(self, token):
         return Node(token)
-    @create.register(ArrowToken)
-    def _(self, token):
-        return Node()

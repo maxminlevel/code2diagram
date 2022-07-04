@@ -3,18 +3,20 @@
 #  - Output: A graph:
 #   - Node: Actor, usecase, class
 #   - Edges: Different kinds of arrow
-from ds.umlGraph import UMLGraph, Node, Edge
-from parsing.umlGraphConfig import ACTOR_TYPE, USECASE_TYPE, ARROW_TYPE
+from ds.umlGraph.umlEdge import EdgeFactory
+from ds.umlGraph.umlGraph import UMLGraph, Edge
+from ds.umlGraph.umlNode import NodeFactory
+from parsing.umlGraphConfig import ACTOR_TYPE, EDGE_TYPE, NODE_TYPE, USECASE_TYPE, ARROW_TYPE
 class Parser:
-    tokenToGraphObjMapping = {
-        ACTOR_TYPE: Node,
-        USECASE_TYPE: Node,
-        ARROW_TYPE: Edge,
+    tokenToFactory = {
+        ACTOR_TYPE: NodeFactory,
+        USECASE_TYPE: NodeFactory,
+        ARROW_TYPE: EdgeFactory,
     }
     @staticmethod
     def parse(tokens):
         graph = UMLGraph()
         for token in tokens:
-            graphObj = Parser.tokenToGraphObjMapping[token.type](token.value, token.type, token.attributes)
-            graph.add(graphObj)
+            factory = Parser.tokenToFactory[token.type]
+            graph.add(factory)
         return graph
