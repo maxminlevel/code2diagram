@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<attribute>
+		<name>Simple</name>
+		<type>Usecase</type>
+	</attribute>
+	<data>
+		<name>Man</name>
+		<uniq>1</uniq>
+		<type>actor</type>
+		<group></group>
+		<attribute />
+	</data>
+	<data>
+		<name>do some thing</name>
+		<uniq>2</uniq>
+		<type>action</type>
+		<group></group>
+		<attribute />
+	</data>
+	<data>
+		<source>1</source>
+		<target>2</target>
+		<type>arrow</type>
+		<attribute />
+	</data>
+</root>

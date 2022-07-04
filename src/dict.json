@@ -1,0 +1,28 @@
+{
+    "attribute": {
+        "name": "Simple",
+        "type": "Usecase"
+    },
+    "data": [
+        {
+            "name": "Man",
+            "uniq": "1",
+            "type": "actor",
+            "group": "",
+            "attribute": {}
+        },
+        {
+            "name": "do some thing",
+            "uniq": "2",
+            "type": "action",
+            "group": "",
+            "attribute": {}
+        },
+        {
+            "source": 1,
+            "target": 2,
+            "type": "arrow",
+            "attribute": {}
+        }
+    ]
+}
