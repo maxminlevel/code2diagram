@@ -20,9 +20,8 @@ class JSON_input(LexerMethod):
         super().__init__('json')
 
     def analyze(self, fileContent):
-        contentJson = json.loads(fileContent)
         listTokens = []
-        for item in contentJson["data"]:
+        for item in fileContent["data"]:
             token = None
             if item['type'] == "actor":
                 groupId = item['group']
