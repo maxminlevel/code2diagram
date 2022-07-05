@@ -3,12 +3,12 @@
 from functools import singledispatch
 from ds.umlGraph.umlNode import Node
 from ds.umlGraph.umlEdge import Edge
+import graphviz
 class UMLGraph:
     def __init__(self):
         # initial nodes, edges
-        self.nodes = {}
-        self.edges = {}
-        self.relationships = []
+        self.nodes = []
+        self.edges = []
 
     @singledispatch
     def add(self, graphObj):
@@ -16,13 +16,16 @@ class UMLGraph:
 
     @add.register(Node)
     def add_node(self, node):
-        self.nodes[node.id] = node
+        self.nodes.append(node)
 
     @add.register(Edge)
     def add_edge(self, edge):
-        self.edges[edge.id] = edge
-        self.relationships.append({
-            "srcId": edge.srcId,
-            "dstId": edge.dstId,
-            "edgeId": edge.id
-        })
+        self.edges.append(edge)
+
+    def toDotGraph(self):
+        graph = graphviz.Digraph(comment="UML Graph")
+        for node in self.nodes:
+            graph.node(node.toDotArgs())
+        for edge in self.edges:
+            graph.edge(edge.toDotArgs())
+        return graph
