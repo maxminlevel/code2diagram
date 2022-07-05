@@ -1,10 +1,11 @@
 # Contain information about each token of our language
 import enum
+from ds.umlGraph.umlGraphConfig import ACTOR_TYPE, USECASE_TYPE, ARROW_TYPE, CLASS_TYPE
 class TypeToken(enum.Enum):
-    Actor = 1
-    Usecase = 2
-    Class = 3
-    Arrow = 4
+    Actor = ACTOR_TYPE
+    Usecase = USECASE_TYPE
+    Class = CLASS_TYPE
+    Arrow = ARROW_TYPE
 
 class TypeRelation(enum.Enum):
     ISA = 1
@@ -20,7 +21,7 @@ class Token(object):
         self.__typeToken = typeToken
 
     @property
-    def getTypeToken(self):
+    def type(self):
         return self.__typeToken
 
     def __str__(self) -> str:
