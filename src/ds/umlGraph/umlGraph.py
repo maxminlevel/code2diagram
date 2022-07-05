@@ -12,7 +12,7 @@ class UMLGraph:
 
     @singledispatch
     def add(self, graphObj):
-        raise TypeError("UML Graph doesn't support type: {}").format(type(graphObj))
+        raise TypeError("UML Graph doesn't support type: {}".format(graphObj.__class__.__name__))
 
     @add.register(Node)
     def add_node(self, node):
