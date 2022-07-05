@@ -11,8 +11,8 @@ class Edge:
         self.id = str(uuid4())
     def __str__(self):
         return self.srcId + " " + self.name + " " + self.dstId
-    def __repr__(self):
-        return self.srcId + " " + self.name + " " + self.dstId
+    def toUMLArgs(self):
+        return self.srcId, self.dstId, self.name
 
 class EdgeFactory:
     @staticmethod
