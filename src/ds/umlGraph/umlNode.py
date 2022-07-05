@@ -27,16 +27,15 @@ class UsecaseNode(Node):
         return self.id, self.name
 
 class NodeFactory:
-    @staticmethod
     @singledispatch
-    def create(self, token):
+    def create(token):
         raise NotImplementedError
     @create.register(UsecaseToken)
-    def _(self, token: UsecaseToken):
+    def _(token: UsecaseToken):
         return Node(token.getName, token.getGroupId, None)
     @create.register(ActorToken)
-    def _(self, token: ActorToken):
+    def _(token: ActorToken):
         return Node(token.getName, token.getGroupId, None)
     @create.register(ClassToken)
-    def _(self, token: ClassToken):
+    def _(token: ClassToken):
         return Node(token.getName, token.getGroupId, token.getAttributes)

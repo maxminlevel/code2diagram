@@ -15,10 +15,9 @@ class Edge:
         return self.srcId, self.dstId, self.name
 
 class EdgeFactory:
-    @staticmethod
     @singledispatch
-    def create(self, token):
+    def create(token):
         raise NotImplementedError
     @create.register(ArrowToken)
-    def _(self, token):
+    def _(token):
         return Edge(token)
