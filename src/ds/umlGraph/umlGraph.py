@@ -1,6 +1,6 @@
 # class UMLGraph
 # Contain information about our uml diagram relationships
-from functools import singledispatch
+from functools import singledispatchmethod
 from ds.umlGraph.umlNode import Node
 from ds.umlGraph.umlEdge import Edge
 import graphviz
@@ -10,16 +10,16 @@ class UMLGraph:
         self.nodes = []
         self.edges = []
 
-    @singledispatch
+    @singledispatchmethod
     def add(self, graphObj):
         raise TypeError("UML Graph doesn't support type: {}".format(graphObj.__class__.__name__))
 
     @add.register(Node)
-    def add_node(self, node):
+    def add_node(self, node: Node):
         self.nodes.append(node)
 
     @add.register(Edge)
-    def add_edge(self, edge):
+    def add_edge(self, edge: Edge):
         self.edges.append(edge)
 
     def toDotGraph(self):
