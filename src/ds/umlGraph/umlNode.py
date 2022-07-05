@@ -32,10 +32,10 @@ class NodeFactory:
         raise NotImplementedError
     @create.register(UsecaseToken)
     def _(token: UsecaseToken):
-        return Node(token.getName, token.getGroupId, None)
+        return Node(token.name, token.groupId, None)
     @create.register(ActorToken)
     def _(token: ActorToken):
-        return Node(token.getName, token.getGroupId, None)
+        return Node(token.name, token.groupId, None)
     @create.register(ClassToken)
     def _(token: ClassToken):
-        return Node(token.getName, token.getGroupId, token.getAttributes)
+        return Node(token.name, token.groupId, token.attributes)
