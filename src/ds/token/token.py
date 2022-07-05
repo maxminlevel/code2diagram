@@ -1,11 +1,11 @@
 # Contain information about each token of our language
 import enum
-
+from ds.umlGraph.umlGraphConfig import ACTOR_TYPE, USECASE_TYPE, ARROW_TYPE, CLASS_TYPE
 class TypeToken(enum.Enum):
-    Actor = 1
-    Usecase = 2
-    Class = 3
-    Arrow = 4
+    Actor = ACTOR_TYPE
+    Usecase = USECASE_TYPE
+    Class = CLASS_TYPE
+    Arrow = ARROW_TYPE
 
 class TypeRelation(enum.Enum):
     ISA = 1
@@ -21,7 +21,7 @@ class Token(object):
         self.__typeToken = typeToken
 
     @property
-    def getTypeToken(self):
+    def type(self):
         return self.__typeToken
 
     def __str__(self) -> str:
@@ -36,15 +36,15 @@ class ActorToken(Token):
         self.__groupId = groupId
 
     @property
-    def getName(self):
+    def name(self):
         return self.__name
 
     @property
-    def getGroupId(self):
+    def groupId(self):
         return self.__groupId
 
     def __str__(self) -> str:
-        return self.getTypeToken + " " + self.getName + " " + self.getGroupId
+        return self.type + " " + self.name + " " + self.groupId
 
 class ArrowToken(Token):
     __source = None
@@ -69,7 +69,7 @@ class ArrowToken(Token):
         return self.__typeRelation
 
     def __str__(self) -> str:
-        return self.getTypeToken + " " + str(self.getSource) + " " + str(self.getTarget) + " " + str(self.getTypeRelation)
+        return self.type + " " + str(self.getSource) + " " + str(self.getTarget) + " " + str(self.getTypeRelation)
 
 class UsecaseToken(Token):
     __name = None         #Name of usecase
@@ -80,15 +80,15 @@ class UsecaseToken(Token):
         self.__groupId = groupId
 
     @property
-    def getName(self):
+    def name(self):
         return self.__name
 
     @property
-    def getGroupId(self):
+    def groupId(self):
         return self.__groupId
     
     def __str__(self) -> str:
-        return self.getTypeToken + " " + self.getName + " " + self.getGroupId
+        return self.type + " " + self.name + " " + self.groupId
 
     
 
@@ -103,16 +103,16 @@ class ClassToken(Token):
         self.__attributes = attributes
 
     @property
-    def getName(self):
+    def name(self):
         return self.__name
 
     @property
-    def getGroupId(self):
+    def groupId(self):
         return self.__groupId
 
     @property
-    def getAttributes(self):
+    def attributes(self):
         return self.__attributes  
     
     def __str__(self) -> str:
-        return self.getTypeToken() + " " + self.getName() + " " + self.getGroupId() + " " + self.getAttributes()
+        return self.type + " " + self.name + " " + self.groupId + " " + self.attributes

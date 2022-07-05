@@ -2,6 +2,7 @@ from abc import abstractmethod
 from ds.object.flexible import FlexibleObject
 import json
 from ds.token.token import*
+from ds.umlGraph.umlGraphConfig import ACTOR_TYPE, USECASE_TYPE, ARROW_TYPE, CLASS_TYPE
 
 class LexerMethod(FlexibleObject):
     instance = dict()
@@ -20,21 +21,20 @@ class JSON_input(LexerMethod):
         super().__init__('json')
 
     def analyze(self, fileContent):
-        contentJson = json.loads(fileContent)
         listTokens = []
-        for item in contentJson["data"]:
+        for item in fileContent["data"]:
             token = None
-            if item['type'] == "actor":
+            if item['type'] == ACTOR_TYPE:
                 groupId = item['group']
                 if groupId is None:
                     token = ActorToken(item["type"], item["name"])
                 else:
                     token = ActorToken(item["type"], item["name"], groupId)
-            elif item["type"] == "arrow":
+            elif item["type"] == ARROW_TYPE:
                 token = ArrowToken(item["type"], item["source"], item["target"], item['attribute'])
-            elif item["type"] == "usecase":
+            elif item["type"] == USECASE_TYPE:
                 token = UsecaseToken(item["type"], item["name"], item["group"])
-            elif item["type"] == "class":
+            elif item["type"] == CLASS_TYPE:
                 token = ClassToken(item["type"], item["name"], item["group"], item["attribute"])
             
             listTokens.append(token)

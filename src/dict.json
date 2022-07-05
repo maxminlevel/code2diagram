@@ -14,7 +14,7 @@
         {
             "name": "do some thing",
             "uniq": "2",
-            "type": "action",
+            "type": "usecase",
             "group": "",
             "attribute": {}
         },
