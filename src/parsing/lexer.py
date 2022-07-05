@@ -9,12 +9,12 @@ from parsing.lexerMethod import LexerMethod
 obj = '{"attribute": {"name": "Simple", "type": "Usecase"}, "data": [{"name": "Man", "uniq": "1", "type": "actor", "group": "", "attribute": {}}, {"name": "do some thing", "uniq": "2", "type": "action", "group": "", "attribute": {}}, {"source": 1, "target": 2, "type": "arrow", "attribute": {}}]}'
 
 class Lexer(object):
-    def __init__(self):
-        self.type = "Lexer"
+    def __init__(self, type):
+        self.type = type
         self.lexerMethod = None
         
     def analyze(self, fileContent):
-        self.setLexerMethod(self.select_type_lexer_method("json"))
+        self.setLexerMethod(self.select_type_lexer_method(self.type))
         return self.lexerMethod.analyze(fileContent)
 
     def setLexerMethod(self, method: LexerMethod):
@@ -25,6 +25,11 @@ class Lexer(object):
         if not lexerMethod:
             raise TypeError("This type isn't supported: {}".format(type(typeFileContent)))
         return lexerMethod
+
+lexer = Lexer("json")
+listTokens = lexer.analyze(obj)
+print(listTokens)
+
 
 
 

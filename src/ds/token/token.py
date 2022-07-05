@@ -1,5 +1,6 @@
 # Contain information about each token of our language
 import enum
+from itertools import count
 from ds.umlGraph.umlGraphConfig import ACTOR_TYPE, USECASE_TYPE, ARROW_TYPE, CLASS_TYPE
 class TypeToken(enum.Enum):
     Actor = ACTOR_TYPE
@@ -17,30 +18,38 @@ class TypeRelation(enum.Enum):
 
 class Token(object):
     __typeToken = None
-    def __init__(self, typeToken : TypeToken):
+    __idToken = None
+    def __init__(self, typeToken : TypeToken, uid = None):
         self.__typeToken = typeToken
+        self.__idToken = uid
 
     @property
-    def type(self):
+    def getType(self):
         return self.__typeToken
+
+    @property
+    def getIdToken(self):
+        return self.__idToken
 
     def __str__(self) -> str:
         pass
 
+    
+
 class ActorToken(Token):
     __name = None
     __groupId = None
-    def __init__(self, typeToken, name, groupId):
-        super().__init__(typeToken)
+    def __init__(self, typeToken, uid, name, groupId = None):
+        super().__init__(typeToken, uid)
         self.__name = name
         self.__groupId = groupId
 
     @property
-    def name(self):
+    def getName(self):
         return self.__name
 
     @property
-    def groupId(self):
+    def getGroupId(self):
         return self.__groupId
 
     def __str__(self) -> str:
@@ -74,8 +83,8 @@ class ArrowToken(Token):
 class UsecaseToken(Token):
     __name = None         #Name of usecase
     __groupId = None        #Group ID
-    def __init__(self, typeToken, name, groupId):
-        super().__init__(typeToken)
+    def __init__(self, typeToken, uid, name, groupId):
+        super().__init__(typeToken, uid)
         self.__name = name
         self.__groupId = groupId
 
@@ -96,8 +105,8 @@ class ClassToken(Token):
     __name = None         #Name of class
     __groupId = None        #Group ID of classes
     __attributes = None   #List attributes of a class
-    def __init__(self, typeToken, name, groupId, attributes):
-        super().__init__(typeToken)
+    def __init__(self, typeToken, uid, name, groupId, attributes):
+        super().__init__(typeToken, uid)
         self.__name = name
         self.__groupId = groupId
         self.__attributes = attributes

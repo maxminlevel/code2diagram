@@ -27,15 +27,15 @@ class JSON_input(LexerMethod):
             if item['type'] == ACTOR_TYPE:
                 groupId = item['group']
                 if groupId is None:
-                    token = ActorToken(item["type"], item["name"])
+                    token = ActorToken(item["type"], item["uid"], item["name"])
                 else:
-                    token = ActorToken(item["type"], item["name"], groupId)
+                    token = ActorToken(item["type"], item["uid"], item["name"], groupId)
             elif item["type"] == ARROW_TYPE:
                 token = ArrowToken(item["type"], item["source"], item["target"], item['attribute'])
             elif item["type"] == USECASE_TYPE:
-                token = UsecaseToken(item["type"], item["name"], item["group"])
+                token = UsecaseToken(item["type"], item["uid"], item["name"], item["group"])
             elif item["type"] == CLASS_TYPE:
-                token = ClassToken(item["type"], item["name"], item["group"], item["attribute"])
+                token = ClassToken(item["type"], item["uid"], item["name"], item["group"], item["attribute"])
             
             listTokens.append(token)
         
