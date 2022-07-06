@@ -1,7 +1,7 @@
 from functools import singledispatch
 from uuid import uuid4
 
-from ds.token.token import ArrowToken
+from ds.token.token import ArrowToken, TypeRelation
 class Edge:
     def __init__(self, type, srcId, dstId):
         self.srcId = srcId
@@ -17,9 +17,9 @@ class ArrowEdge(Edge):
     def __init__(self, type, srcId, dstId):
         super().__init__(type, srcId, dstId)
     def __str__(self):
-        return self.srcId + " " + self.name + " " + self.dstId + " " + self.typeRelation
+        return self.srcId + " " + self.type + " " + self.dstId
     def toUMLArgs(self):
-        if self.type 
+        return self.srcId, self.dstId
 
 class EdgeFactory:
     @singledispatch
