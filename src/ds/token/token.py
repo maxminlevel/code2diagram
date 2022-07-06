@@ -41,7 +41,7 @@ class ActorToken(Token):
     __groupId = None
     def __init__(self, typeToken, uid, name, groupId = None):
         super().__init__(typeToken, uid)
-        self.__name = name
+        self.__name = '\n\n\n\n\n\n'+name
         self.__groupId = groupId
 
     @property
