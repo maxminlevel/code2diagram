@@ -1,8 +1,4 @@
 import argparse
-from ast import arg
-
-def hello():
-    print()
 
 parser = argparse.ArgumentParser(description='Code to diagram')
 parser.add_argument('-i','--input', help='Input file describe diagram (json, xml, csv, txt, ...)', required=True)
