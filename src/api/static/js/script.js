@@ -16,22 +16,21 @@ console.log("Console of Code to Diagram");
 let input = document.querySelector('input')
  
 let textarea = document.querySelector('textarea')
- 
-// This event listener has been implemented to identify a
-// Change in the input section of the html code
-// It will be triggered when a file is chosen.
+
+let typeFileSelect = document.getElementById('type_file')
+
+let srcImg = document.getElementById('image')
+
 input.addEventListener('change', () => {
     let files = input.files;
  
     if (files.length == 0) return;
  
-    /* If any further modifications have to be made on the
-       Extracted text. The text can be accessed using the
-       file variable. But since this is const, it is a read
-       only variable, hence immutable. To make any changes,
-       changing const to var, here and In the reader.onload
-       function would be advisible */
     const file = files[0];
+
+    let extensionFile = ((file.name).split(".")).pop();
+
+    typeFileSelect.value = extensionFile
  
     let reader = new FileReader();
  
@@ -46,5 +45,14 @@ input.addEventListener('change', () => {
     };
  
     reader.onerror = (e) => alert(e.target.error.name);
+
     reader.readAsText(file);
 });
+
+function downloadImage() {
+    let data = srcImg.src;
+    var a = document.createElement("a"); //Create <a>
+    a.href = data //Image Base64 Goes here
+    a.download = "Image.png"; //File name Here
+    a.click(); //Downloaded file
+};
