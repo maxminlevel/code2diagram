@@ -83,13 +83,29 @@ class UMLGraph:
         for edge in self.edges:
             if edge.srcId in self.mapNodeToGroupId and edge.dstId in self.mapNodeToGroupId:
                 continue
-            src, target = edge.toDotArgs()
-            graph.edge(src, target)
+            src, target, styles = edge.toDotArgs()
+            graph.edge(src, target, **styles)
         for groupId in self.groupIds:
             subgraphName = "cluster_" + groupId
             with graph.subgraph(name=subgraphName) as subGraph:
                 subGraph.attr(**self.defaultSubgraphStyles['graph'])
                 subGraph.node_attr.update(**self.defaultSubgraphStyles['node'])
                 subGraph.edge_attr.update(**self.defaultSubgraphStyles['edge'])
-                subGraph.edges([(edge.srcId, edge.dstId) for edge in self.edges if self.isEdgeInGroup(edge, groupId)])
+                subGraph.edges([(edge.toDotArgs()) for edge in self.edges if self.isEdgeInGroup(edge, groupId)])
         return graph
+
+    def withGraphStyles(self, graphStyles):
+        newStyles = {**self.defaultGraphStyles['graph'], **graphStyles}
+        self.defaultGraphStyles['graph'] = newStyles
+        return self
+    
+    def withNodeStyles(self, nodeStyles):
+        newStyles = {**self.defaultGraphStyles['node'], **nodeStyles}
+        self.defaultGraphStyles['node'] = newStyles
+        return self
+    
+    def withEdgeStyles(self, edgeStyles):
+        newStyles = {**self.defaultGraphStyles['edge'], **edgeStyles}
+        self.defaultGraphStyles['edge'] = newStyles
+        return self
+    
