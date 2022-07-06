@@ -1,0 +1,254 @@
+{
+    "attribute": {
+        "name": "Simple",
+        "type": "Usecase"
+    },
+    "data": [
+        {
+            "name": "User",
+            "uid": "1",
+            "type": "actor",
+            "group": "",
+            "attribute": {}
+        },
+        {
+            "name": "User CLI",
+            "uid": "2",
+            "type": "actor",
+            "group": "",
+            "attribute": {}
+        },
+        {
+            "name": "User Web",
+            "uid": "3",
+            "type": "actor",
+            "group": "",
+            "attribute": {}
+        },
+        {
+            "name": "Use CLI",
+            "uid": "4",
+            "type": "usecase",
+            "group": "",
+            "attribute": {}
+        },
+        {
+            "name": "Use Web",
+            "uid": "5",
+            "type": "usecase",
+            "group": "",
+            "attribute": {}
+        },
+        {
+            "name": "Send file",
+            "uid": "6",
+            "type": "usecase",
+            "group": "send",
+            "attribute": {}
+        },
+        {
+            "name": "Send file by CLI",
+            "uid": "7",
+            "type": "usecase",
+            "group": "send",
+            "attribute": {}
+        },
+        {
+            "name": "Send file by HTTP Request",
+            "uid": "8",
+            "type": "usecase",
+            "group": "send",
+            "attribute": {}
+        },
+        {
+            "name": "Define new convention",
+            "uid": "9",
+            "type": "usecase",
+            "group": "define",
+            "attribute": {}
+        },
+        {
+            "name": "Define new file content",
+            "uid": "13",
+            "type": "usecase",
+            "group": "define",
+            "attribute": {}
+        },
+        {
+            "name": "Define new token",
+            "uid": "14",
+            "type": "usecase",
+            "group": "define",
+            "attribute": {}
+        },
+        {
+            "name": "Define new parser",
+            "uid": "15",
+            "type": "usecase",
+            "group": "define",
+            "attribute": {}
+        },
+        {
+            "name": "Define how to read file it",
+            "uid": "16",
+            "type": "usecase",
+            "group": "define",
+            "attribute": {}
+        },
+        {
+            "name": "Define how to parse it",
+            "uid": "17",
+            "type": "usecase",
+            "group": "define",
+            "attribute": {}
+        },
+        {
+            "name": "Define how to parse",
+            "uid": "18",
+            "type": "usecase",
+            "group": "define",
+            "attribute": {}
+        },
+        {
+            "name": "Export diagram",
+            "uid": "10",
+            "type": "usecase",
+            "group": "export",
+            "attribute": {}
+        },
+        {
+            "name": "Export to image",
+            "uid": "11",
+            "type": "usecase",
+            "group": "export",
+            "attribute": {}
+        },
+        {
+            "name": "Export to text format",
+            "uid": "12",
+            "type": "usecase",
+            "group": "export",
+            "attribute": {}
+        },
+        {
+            "source": "2",
+            "target": "1",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "3",
+            "target": "1",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "2",
+            "target": "4",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "3",
+            "target": "5",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "1",
+            "target": "10",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "1",
+            "target": "9",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "1",
+            "target": "6",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "7",
+            "target": "6",
+            "type": "arrow",
+            "attribute": {
+                "relation": "extend"
+            }
+        },
+        {
+            "source": "8",
+            "target": "6",
+            "type": "arrow",
+            "attribute": {
+                "relation": "extend"
+            }
+        },
+        {
+            "source": "11",
+            "target": "10",
+            "type": "arrow",
+            "attribute": {
+                "relation": "extend"
+            }
+        },
+        {
+            "source": "12",
+            "target": "10",
+            "type": "arrow",
+            "attribute": {
+                "relation": "extend"
+            }
+        },
+        {
+            "source": "13",
+            "target": "9",
+            "type": "arrow",
+            "attribute": {}
+        },
+        {
+            "source": "14",
+            "target": "9",
+            "type": "arrow",
+            "attribute": {
+                "relation": "extend"
+            }
+        },
+        {
+            "source": "15",
+            "target": "9",
+            "type": "arrow",
+            "attribute": {
+                "relation": "extend"
+            }
+        },
+        {
+            "source": "13",
+            "target": "16",
+            "type": "arrow",
+            "attribute": {
+                "relation": "include"
+            }
+        },
+        {
+            "source": "14",
+            "target": "17",
+            "type": "arrow",
+            "attribute": {
+                "relation": "include"
+            }
+        },
+        {
+            "source": "15",
+            "target": "18",
+            "type": "arrow",
+            "attribute": {
+                "relation": "include"
+            }
+        }
+    ]
+}
