@@ -24,11 +24,11 @@ class Token(object):
         self.__idToken = uid
 
     @property
-    def getType(self):
+    def type(self):
         return self.__typeToken
 
     @property
-    def getIdToken(self):
+    def id(self):
         return self.__idToken
 
     def __str__(self) -> str:
@@ -45,11 +45,11 @@ class ActorToken(Token):
         self.__groupId = groupId
 
     @property
-    def getName(self):
+    def name(self):
         return self.__name
 
     @property
-    def getGroupId(self):
+    def groupId(self):
         return self.__groupId
 
     def __str__(self) -> str:
