@@ -8,7 +8,7 @@ class TypeToken(enum.Enum):
     Class = CLASS_TYPE
     Arrow = ARROW_TYPE
 
-class TypeRelation(enum.Enum):
+class TypeRelation:
     ISA = 'isa'
     Extend = 'extend'
     Include = 'include'
@@ -58,12 +58,10 @@ class ActorToken(Token):
 class ArrowToken(Token):
     __source = None
     __target = None
-    __typeRelation = None   #Type of relation of arrow
-    def __init__(self, typeToken, source, target, typeRelation: TypeRelation, attribute = None):
+    def __init__(self, typeToken, source, target, attribute = None):
         super().__init__(typeToken)
         self.__source = source
         self.__target = target
-        self.__typeRelation = typeRelation
         self.__attribute = attribute
 
     @property
@@ -75,15 +73,11 @@ class ArrowToken(Token):
         return self.__target
 
     @property
-    def typeRelation(self):
-        return self.__typeRelation
-
-    @property
     def attribute(self):
         return self.__attribute
 
     def __str__(self) -> str:
-        return self.type + " " + str(self.source) + " " + str(self.target) + " " + str(self.typeRelation)
+        return self.type + " " + str(self.source) + " " + str(self.target)
 
 class UsecaseToken(Token):
     __name = None         #Name of usecase

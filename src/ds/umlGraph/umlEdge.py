@@ -1,6 +1,8 @@
 from functools import singledispatch
 from uuid import uuid4
 
+import graphviz
+
 from ds.token.token import ArrowToken, TypeRelation
 class Edge:
     def __init__(self, type, srcId, dstId, attrs):
@@ -20,10 +22,10 @@ class ArrowEdge(Edge):
     def __str__(self):
         return self.srcId + " " + self.type + " " + self.dstId
     def toDotArgs(self):
-        if self.attrs is not None:
+        if self.attrs is not None and 'relation' in self.attrs:
             relationType = self.attrs['relation']
             if relationType == TypeRelation.Extend or relationType == TypeRelation.Include:
-                return self.srcId, self.dstId, { 'style': 'dashed' }
+                return self.srcId, self.dstId, { 'style': 'dashed', 'label': graphviz.nohtml("<<{0}>>".format(relationType))}
             elif relationType == TypeRelation.OneToOne:
                 return self.srcId, self.dstId, { 'style': 'solid' }
             elif relationType == TypeRelation.OneToMany:
@@ -38,4 +40,4 @@ class EdgeFactory:
         raise NotImplementedError
     @create.register(ArrowToken)
     def _(token: ArrowToken):
-        return ArrowEdge(token.typeRelation, token.source, token.target, token.attribute)
+        return ArrowEdge(token.type, token.source, token.target, token.attribute)
