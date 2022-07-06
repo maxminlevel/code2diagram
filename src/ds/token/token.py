@@ -57,19 +57,19 @@ class ArrowToken(Token):
         self.__typeRelation = typeRelation
 
     @property
-    def getSource(self):
+    def source(self):
         return self.__source
 
     @property
-    def getTarget(self):
+    def target(self):
         return self.__target
 
     @property
-    def getTypeRelation(self):
+    def typeRelation(self):
         return self.__typeRelation
 
     def __str__(self) -> str:
-        return self.type + " " + str(self.getSource) + " " + str(self.getTarget) + " " + str(self.getTypeRelation)
+        return self.type + " " + str(self.source) + " " + str(self.target) + " " + str(self.typeRelation)
 
 class UsecaseToken(Token):
     __name = None         #Name of usecase
