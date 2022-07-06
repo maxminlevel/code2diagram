@@ -8,19 +8,19 @@
             "name": "Man",
             "uid": "1",
             "type": "actor",
-            "group": "",
+            "group": "group",
             "attribute": {}
         },
         {
             "name": "do some thing",
             "uid": "2",
             "type": "usecase",
-            "group": "",
+            "group": "group",
             "attribute": {}
         },
         {
-            "source": 1,
-            "target": 2,
+            "source": "1",
+            "target": "2",
             "type": "arrow",
             "attribute": {}
         }

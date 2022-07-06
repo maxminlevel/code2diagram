@@ -9,16 +9,16 @@ class Edge:
         self.type = type
         self.id = str(uuid4())
     def __str__(self):
-        return self.srcId + " " + self.name + " " + self.dstId
-    def toUMLArgs(self):
-        return self.srcId, self.dstId, self.name
+        return self.srcId + " " + self.dstId
+    def toDotArgs(self):
+        return self.srcId, self.dstId
 
 class ArrowEdge(Edge):
     def __init__(self, type, srcId, dstId):
         super().__init__(type, srcId, dstId)
     def __str__(self):
         return self.srcId + " " + self.type + " " + self.dstId
-    def toUMLArgs(self):
+    def toDotArgs(self):
         return self.srcId, self.dstId
 
 class EdgeFactory:
