@@ -25,7 +25,7 @@ class ArrowEdge(Edge):
         if self.attrs is not None and 'relation' in self.attrs:
             relationType = self.attrs['relation']
             if relationType == TypeRelation.Extend or relationType == TypeRelation.Include:
-                return self.srcId, self.dstId, { 'style': 'dashed', 'label': graphviz.nohtml("<<{0}>>".format(relationType))}
+                return self.srcId, self.dstId, { 'style': 'dashed', 'xlabel': graphviz.nohtml("<<{0}>>".format(relationType))}
             elif relationType == TypeRelation.OneToOne:
                 return self.srcId, self.dstId, { 'style': 'solid' }
             elif relationType == TypeRelation.OneToMany:
