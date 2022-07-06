@@ -25,12 +25,9 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <h2 class="fw-normal mb-0 text-black">Content To Diagram</h2>
-
-                    <a href="{{ url_for('.convert')}}">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-arrow-left-right me-1"></i> Convert
-                        </button>
-                    </a>
+                    <button type="submit" class="btn btn-primary" onclick="convert()">
+                        <i class="bi bi-arrow-left-right me-1"></i> Convert
+                    </button>
                 </div>
 
             </div>
@@ -57,7 +54,7 @@
                             </div>
                         </div>
                         <div class="form-outline">
-                            <textarea class="form-control" id="textAreaExample2" rows="18">{{message}}</textarea>
+                            <textarea class="form-control" id="contentTextArea" rows="18">{{message}}</textarea>
                             <!-- <label class="form-label" for="textAreaExample2">Message</label> -->
                         </div>
                     </div>

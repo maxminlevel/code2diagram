@@ -2,14 +2,15 @@ from flask import Flask, render_template, send_file, request, redirect, url_for
 import json
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def homepage():
+  if request.method == "POST":
+        jsonData = request.get_json()
+        print(jsonData)
+        return {
+            'response' : 'I am the response'
+        }
   return render_template('index.html')
-
-@app.route('/download_image')
-def download_image():
-	path = "./static/images/usecase.png"
-	return send_file(path, as_attachment=True)
 
 @app.route('/convert')
 def convert():

@@ -1,19 +1,8 @@
 console.log("Console of Code to Diagram");
 
-// let btUpload = document.getElementById("upload");
-// console.log(btUpload);
-// btUpload.onClick = () => {};
-
-// let btConvert = document.getElementById("convert");
-// console.log(btConvert);
-// btConvert.onClick = () => {};
-
-// let btDownload = document.getElementById("download");
-// console.log(btDownload);
-// btUpload.onClick = () => {};
 
 
-let input = document.querySelector('input')
+let uploadBtn = document.querySelector('input')
  
 let textarea = document.querySelector('textarea')
 
@@ -21,8 +10,10 @@ let typeFileSelect = document.getElementById('type_file')
 
 let srcImg = document.getElementById('image')
 
-input.addEventListener('change', () => {
-    let files = input.files;
+let contentTextArea = document.getElementById('contentTextArea')
+
+uploadBtn.addEventListener('change', () => {
+    let files = uploadBtn.files;
  
     if (files.length == 0) return;
  
@@ -55,4 +46,32 @@ function downloadImage() {
     a.href = data //Image Base64 Goes here
     a.download = "Image.png"; //File name Here
     a.click(); //Downloaded file
+};
+
+function convert(){
+    let type = typeFileSelect.value;
+    let data = (contentTextArea.value).split(/\r\n|\n/);
+    let message = {type, data} 
+
+    fetch('/', {
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        method : 'POST',
+        body : JSON.stringify(message)
+    })
+    .then(function (response){
+        if(response.ok) {
+            response.json()
+            .then(function(response) {
+                console.log(response);
+            });
+        }
+        else {
+            throw Error('Something went wrong');
+        }
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
 };
