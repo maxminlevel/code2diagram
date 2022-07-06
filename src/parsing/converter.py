@@ -14,6 +14,7 @@ class Converter(ABC):
         fileFormat, fileContent = self.readFile(filePath)
         listTokens = self.parseToTokens(fileFormat, fileContent)
         umlGraph = self.convertToGraph(listTokens)
+        print(umlGraph)
         graph = umlGraph.toDotGraph()
         graph.render('test-output/umlGraph.gv', view=True)
     
@@ -36,7 +37,7 @@ class DotConverter(Converter):
         fileReader.stragety()
         return fileReader.extension[1:], fileReader.get_output()
 
-    def parseToTokens(self, fileFormat: str, fileContent: FileContent) -> List[Token]:
+    def parseToTokens(self, fileFormat: str, fileContent) -> List[Token]:
         lexer = Lexer(fileFormat)
         return lexer.analyze(fileContent)
 

@@ -1,6 +1,5 @@
 from abc import abstractmethod
 from ds.object.flexible import FlexibleObject
-import json
 from ds.token.token import*
 from ds.umlGraph.umlGraphConfig import ACTOR_TYPE, USECASE_TYPE, ARROW_TYPE, CLASS_TYPE
 
