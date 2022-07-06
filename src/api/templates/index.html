@@ -1,541 +1,101 @@
 <html lang="en">
+
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet">
-    <style>
-    </style>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description"
-        content="An online tree-like utility for generating ASCII folder structure diagrams. Written in TypeScript and React.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="tree.nathanfriend.io">
-    <meta property="og:description"
-        content="An online tree-like utility for generating ASCII folder structure diagrams. Written in TypeScript and React.">
-    <meta property="og:image" content="http://tree.nathanfriend.io/tree-logo.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#222222">
-    <meta name="msapplication-TileColor" content="#222222">
-    <meta name="theme-color" content="#222222">
-    <link rel="manifest" href="/manifest.json">
-    <title>Tree</title>
-    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-36351579-2"></script>
-    <script>function gtag() { dataLayer.push(arguments) } window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "UA-36351579-2")</script>
-    <link href="/static/css/2.ca025b70.chunk.css" rel="stylesheet">
-    <link href="/static/css/main.8fec78d8.chunk.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Content To Diagram</title>
+    <link rel="icon" href="{{url_for('static', filename = 'images/logo.png')}}" type="image/icon type" />
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+    <!-- CSS -->
+    <link href="{{url_for('static', filename = 'css/main.css')}}" rel="stylesheet">
 </head>
 
-<body class="w-100 h-100 position-absolute" data-new-gr-c-s-check-loaded="14.1067.0" data-gr-ext-installed=""
-    data-new-gr-c-s-loaded="14.1067.0"><noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-        <div class="app px-3 pt-2 d-flex w-100 min-vh-100 position-absolute flex-column online">
-            <div class="flex-grow-0 flex-shrink-0 d-flex align-items-center mb-2">
-                <div class="flex-even d-flex align-items-center flex-column flex-sm-row">
-                    <h1 class="mr-4 mb-0">tree.nathanfriend.io</h1><a class="my-2 my-sm-0 hide-offline"
-                        href="https://gitlab.com/nfriend/tree-online#what-is-this" target="_blank"
-                        rel="noopener noreferrer">What is this?</a>
+<body>
+
+    <section class="p-3">
+        <div class="row d-flex justify-content-center mx-2">
+            <div class="col-12 mb-3">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="fw-normal mb-0 text-black">Content To Diagram</h2>
+                    <div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="bi bi-arrow-left-right me-1"></i>Convert
+                        </button>
+                    </div>
                 </div>
-                <div class="menu align-items-center flex-even pl-4 d-none d-lg-flex flex-column flex-sm-row">
-                    <div class="btn-group mr-0 mr-sm-4 align-self-stretch align-self-md-center" role="group"
-                        aria-label="Copy and share buttons"><button
-                            class="btn btn-success copy-button py-3 py-sm-0"><b>Copy</b></button><button
-                            class="btn btn-secondary share-button">Share</button></div>
-                    <div class="d-flex align-items-center flex-wrap mt-4 mt-sm-0"><label
-                            class="d-flex align-items-center my-1 mr-3">
-                            <div class="react-toggle react-toggle--checked mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox" checked="">
-                            </div><span class="no-wrap">Fancy</span>
-                        </label><label class="d-flex align-items-center my-1 mr-3">
-                            <div class="react-toggle mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox">
-                            </div><span class="no-wrap">Full path</span>
-                        </label><label class="d-flex align-items-center my-1 mr-3">
-                            <div class="react-toggle react-toggle--checked mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox" checked="">
-                            </div><span class="no-wrap">Trailing /</span>
-                        </label><label class="d-flex align-items-center my-1">
-                            <div class="react-toggle react-toggle--checked mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox" checked="">
-                            </div><span class="no-wrap">Root .</span>
-                        </label></div>
-                </div>
+
             </div>
-            <div class="flex-grow-1 d-flex flex-column flex-lg-row">
-                <div class="flex-even d-flex mr-0 mr-lg-2">
-                    <div class="input p-2 d-flex rounded-sm flex-grow-1">
-                        <div class="flex-grow-1"
-                            style="position: relative; text-align: left; box-sizing: border-box; padding: 0px; overflow: hidden;">
-                            <textarea class="npm__react-simple-code-editor__textarea" autocapitalize="off"
-                                autocomplete="off" autocorrect="off" spellcheck="false" data-gramm="false"
-                                style="margin: 0px; border: 0px; background: none; box-sizing: inherit; display: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-ligatures: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; tab-size: inherit; text-indent: inherit; text-rendering: inherit; text-transform: inherit; white-space: pre-wrap; word-break: keep-all; overflow-wrap: break-word; position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; resize: none; color: inherit; overflow: hidden; -webkit-font-smoothing: antialiased; -webkit-text-fill-color: transparent; padding: 0px;">Edit me to generate
-    a
-      nice
-        tree
-          diagram!
-          :)
-    Use indentation
-      to indicate
-        file
-        and
-        folder
-        nesting.
-      - You can even
-        - use
-          - markdown
-          - bullets!</textarea>
-                            <pre aria-hidden="true"
-                                style="margin: 0px; border: 0px; background: none; box-sizing: inherit; display: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-ligatures: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; tab-size: inherit; text-indent: inherit; text-rendering: inherit; text-transform: inherit; white-space: pre-wrap; word-break: keep-all; overflow-wrap: break-word; position: relative; pointer-events: none; padding: 0px;">Edit me to generate
-    a
-      nice
-        tree
-          diagram!
-          :)
-    Use indentation
-      to indicate
-        file
-        and
-        folder
-        nesting.
-      - You can even
-        - use
-          - markdown
-          - bullets!</pre>
-                            <style type="text/css">
-                                /**
-   * Reset the text fill color so that placeholder is visible
-   */
-                                .npm__react-simple-code-editor__textarea:empty {
-                                    -webkit-text-fill-color: inherit !important;
-                                }
 
-                                /**
-   * Hack to apply on some CSS on IE10 and IE11
-   */
-                                @media all and (-ms-high-contrast: none),
-                                (-ms-high-contrast: active) {
-
-                                    /**
-      * IE doesn't support '-webkit-text-fill-color'
-      * So we use 'color: transparent' to make the text transparent on IE
-      * Unlike other browsers, it doesn't affect caret color in IE
-      */
-                                    .npm__react-simple-code-editor__textarea {
-                                        color: transparent !important;
-                                    }
-
-                                    .npm__react-simple-code-editor__textarea::selection {
-                                        background-color: #accef7 !important;
-                                        color: transparent !important;
-                                    }
-                                }
-                            </style>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h class="card-title">
+                                Content
+                            </h>
+                            <div class="d-flex justify-content-end my-3">
+                                <select class="dataTable-selector me-2">
+                                    <option value="" selected="">File type </option>
+                                    <option value="json">JSON</option>
+                                    <option value="xml">XML</option>
+                                    <option value="csv">CSV</option>
+                                </select>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-upload me-1"></i> Upload File
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-outline">
+                            <textarea class="form-control" id="textAreaExample2" rows="18"></textarea>
+                            <!-- <label class="form-label" for="textAreaExample2">Message</label> -->
                         </div>
                     </div>
                 </div>
-                <div class="flex-even">
-                    <div class="tree p-2 rounded-sm flex-grow-1">.
-                        └── Edit me to generate/
-                        ├── a/
-                        │ └── nice/
-                        │ └── tree/
-                        │ ├── diagram!
-                        │ └── :)
-                        └── Use indentation/
-                        ├── to indicate/
-                        │ ├── file
-                        │ ├── and
-                        │ ├── folder
-                        │ └── nesting.
-                        └── You can even/
-                        └── use/
-                        ├── markdown
-                        └── bullets!</div>
-                </div>
-                <div class="menu align-items-center d-flex d-lg-none pt-2 pb-5 flex-column flex-sm-row">
-                    <div class="btn-group mr-0 mr-sm-4 align-self-stretch align-self-md-center" role="group"
-                        aria-label="Copy and share buttons"><button
-                            class="btn btn-success copy-button py-3 py-sm-0"><b>Copy</b></button><button
-                            class="btn btn-secondary share-button">Share</button></div>
-                    <div class="d-flex align-items-center flex-wrap mt-4 mt-sm-0"><label
-                            class="d-flex align-items-center my-1 mr-3">
-                            <div class="react-toggle react-toggle--checked mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox" checked="">
-                            </div><span class="no-wrap">Fancy</span>
-                        </label><label class="d-flex align-items-center my-1 mr-3">
-                            <div class="react-toggle mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox">
-                            </div><span class="no-wrap">Full path</span>
-                        </label><label class="d-flex align-items-center my-1 mr-3">
-                            <div class="react-toggle react-toggle--checked mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox" checked="">
-                            </div><span class="no-wrap">Trailing /</span>
-                        </label><label class="d-flex align-items-center my-1">
-                            <div class="react-toggle react-toggle--checked mr-1 options-toggle">
-                                <div class="react-toggle-track">
-                                    <div class="react-toggle-track-check"></div>
-                                    <div class="react-toggle-track-x"></div>
-                                </div>
-                                <div class="react-toggle-thumb"></div><input class="react-toggle-screenreader-only"
-                                    type="checkbox" checked="">
-                            </div><span class="no-wrap">Root .</span>
-                        </label></div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-title">
+                                Diagram
+                            </h3>
+                            <div class="d-flex justify-content-end my-3">
+                                <select class="dataTable-selector me-2">
+                                    <option value="" selected="">Diagram type</option>
+                                    <option value="usecase">Usecase Diagram</option>
+                                    <option value="class">Class Diagram</option>
+                                </select>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-download me-1"></i> Download Image
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-outline">
+                            <textarea class="form-control" id="textAreaExample2" rows="18"></textarea>
+                            <!-- <label class="form-label" for="textAreaExample2">Message</label> -->
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div
-                class="flex-grow-0 flex-shrink-0 d-flex align-items-center align-items-sm-start mt-2 flex-column flex-md-row">
-                <p class="text-muted text-center text-sm-left mb-2 pr-0 pr-sm-4 mr-auto"><span>Last deployed on
-                        2021/04/13 at 01:38:10 +0700 (a year ago) for commit <a class="hide-offline"
-                            href="https://gitlab.com/nfriend/tree-online/commit/12c4c1ea">12c4c1ea</a><b
-                            class="hide-online">12c4c1ea</b></span></p>
-                <div class="d-flex flex-column flex-sm-row align-items-center align-items-sm-start mb-2 mt-md-0"><a
-                        class="pr-0 pr-sm-4 view-source-on-gitlab-link no-wrap hide-offline"
-                        href="https://gitlab.com/nfriend/tree-online">View the source on Gitlab<svg
-                            viewBox="0 0 586 559">
-                            <path
-                                d="m461.48 298.35l-17.78-54.63a7.72 7.72 0 0 0 -.43 -1.47l-35.67-109.8a14.18 14.18 0 0 0 -13.54 -9.67 13.94 13.94 0 0 0 -13.38 9.75l-34 104.63h-107.31l-34.05-104.63a13.94 13.94 0 0 0 -13.32 -9.75h-.08a14.22 14.22 0 0 0 -13.5 9.76l-35.7 109.93c0 .1-.08.18-.11.28l-18.1 55.61a20.29 20.29 0 0 0 7.37 22.71l156.38 113.63a8 8 0 0 0 9.45 -.05l156.41-113.58a20.28 20.28 0 0 0 7.36 -22.72m-233.75-45.13l43.59 134.16-104.64-134.16m148.05 134.19l41.8-128.62 1.8-5.57h61.1l-94.67 121.28m69.44-231.67l30.63 94.33h-61.31m-22.03 16l-30.37 93.46-18.12 55.66-48.42-149.12m-52.73-110.33l30.69 94.33h-61.27m-19.98 70.97a4.31 4.31 0 0 1 -1.56 -4.83l13.44-41.3 98.57 126.37m192.98-80.24l-110.46 80.21.37-.48 98.2-125.86 13.44 41.28a4.31 4.31 0 0 1 -1.55 4.84">
-                            </path>
-                        </svg></a><a class="pipeline-status-link mt-2 mt-sm-0 mb-4 mb-md-0 hide-offline"
-                        href="https://gitlab.com/nfriend/tree-online/pipelines"><img
-                            src="https://gitlab.com/nfriend/tree-online/badges/master/pipeline.svg"
-                            alt="GitLab build status"></a></div>
-            </div>
+
         </div>
-    </div>
-    <script>!function (e) { function r(r) { for (var n, i, l = r[0], a = r[1], f = r[2], c = 0, s = []; c < l.length; c++)i = l[c], Object.prototype.hasOwnProperty.call(o, i) && o[i] && s.push(o[i][0]), o[i] = 0; for (n in a) Object.prototype.hasOwnProperty.call(a, n) && (e[n] = a[n]); for (p && p(r); s.length;)s.shift()(); return u.push.apply(u, f || []), t() } function t() { for (var e, r = 0; r < u.length; r++) { for (var t = u[r], n = !0, l = 1; l < t.length; l++) { var a = t[l]; 0 !== o[a] && (n = !1) } n && (u.splice(r--, 1), e = i(i.s = t[0])) } return e } var n = {}, o = { 1: 0 }, u = []; function i(r) { if (n[r]) return n[r].exports; var t = n[r] = { i: r, l: !1, exports: {} }; return e[r].call(t.exports, t, t.exports, i), t.l = !0, t.exports } i.m = e, i.c = n, i.d = function (e, r, t) { i.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, i.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, i.t = function (e, r) { if (1 & r && (e = i(e)), 8 & r) return e; if (4 & r && "object" == typeof e && e && e.__esModule) return e; var t = Object.create(null); if (i.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: e }), 2 & r && "string" != typeof e) for (var n in e) i.d(t, n, function (r) { return e[r] }.bind(null, n)); return t }, i.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return i.d(r, "a", r), r }, i.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, i.p = "/"; var l = this["webpackJsonp@nathanfriend/tree-online"] = this["webpackJsonp@nathanfriend/tree-online"] || [], a = l.push.bind(l); l.push = r, l = l.slice(); for (var f = 0; f < l.length; f++)r(l[f]); var p = a; t() }([])</script>
-    <script src="/static/js/2.db8c8bc1.chunk.js"></script>
-    <script src="/static/js/main.860ea691.chunk.js"></script>
-    <div class="overlay__popup"></div>
-    <div class="div__popup--setting">
-        <div>
-            <div class="mochi__close">
-                <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mochi--close">
-            </div>
-            <h4 class="mochi-text-title-2">Cài đặt chung</h4>
-            <div class="selector-language">
-                <p class="selector-title">
-                    Chọn từ điển mặc định
-                </p>
-                <select class="dict-select">
-                    <option value="1" class="option__one" selected="true">
-                        Từ điển Anh - Việt
-                    </option>
-                    <option value="2" class="option__two">
-                        Từ điển Anh - Anh
-                    </option>
-                </select>
-            </div>
-            <div class="setting-web">
-                <p class="setting-web-title">
-                    Chức năng Mochi New Tab
-                </p>
-                <div class="setting__label">
-                    <label class="switch">
-                        <input type="checkbox" checked="false" id="input-switch">
-                        <span class="slider round"></span>
-                    </label>
-                    <div class="switch--label">
-                        <p>On</p>
-                    </div>
-                </div>
-            </div>
-            <div class="settings-background">
-                <div class="setting-image">
-                    <div class="setting-close">
-                        <img src="https://mochidemy.com/extension-bg/287274614_1197320181081642_3644767004924531515_n.webp"
-                            alt="mochi-check">
-                    </div>
-                    <img src="https://mochidemy.com/extension-bg/bg_extension_0.b3fab7e8204ee2926dc6.jpg" id="one1"
-                        class="image__background" alt="mochi-ext">
-                </div>
-                <div class="setting-image">
-                    <div class="setting-close">
-                    </div>
-                    <img src="https://mochidemy.com/extension-bg/bg_extension_1.6d559b5963a29ab55163.jpg" id="one2"
-                        class="image__background" alt="mochi-ext">
-                </div>
-                <div class="setting-image">
-                    <div class="setting-close">
-                    </div>
-                    <img src="https://mochidemy.com/extension-bg/bg_extension_2.8d5c082626304da579af.jpg" id="one3"
-                        class="image__background" alt="mochi-ext">
-                </div>
-                <div class="setting-image">
-                    <div class="setting-close">
-                    </div>
-                    <img src="https://mochidemy.com/extension-bg/bg_extension_3.81f0d7831ea4c4bd55db.jpg" id="one4"
-                        class="image__background" alt="mochi-ext">
-                </div>
-                <div class="setting-image">
-                    <div class="setting-close">
-                    </div>
-                    <img src="https://mochidemy.com/extension-bg/bg_extension_4.a1a90e2d1fa950e9dae1.jpg" id="one5"
-                        class="image__background" alt="mochi-ext">
-                </div>
-                <div class="setting-image">
-                    <div class="setting-close">
-                    </div>
-                    <img src="https://mochidemy.com/extension-bg/bg_extension_5.1b27225974f6a6956164.jpg" id="one6"
-                        class="image__background" alt="mochi-ext">
-                </div>
-                <div class="setting-image">
-                    <div class="setting-close">
-                    </div>
-                    <img src="https://mochidemy.com/extension-bg/bg_extension_6.351be4a10e3ce8f4f18f.png" id="one7"
-                        class="image__background" alt="mochi-ext">
-                </div>
-            </div>
-        </div>
-    </div><img id="icon_mochi_extension"
-        src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/extension_icon.png" alt="icon mochi"
-        style="transform-origin: right top; transform: translateX(-100%) translateY(0%) scale(1); display: none; position: absolute; height: 24px; width: 24px; z-index: 2147483000; overflow: auto; cursor: pointer;">
-    <div class="mochi-extension-loading loader loader-default is-active" alt="icon mochi" style="
-    transform-origin: right top;
-    transform: translateX(-100%) translateY(0%) scale(1);
-    display: none;
-    position: absolute;
-    z-index: 2147483000;
-  "></div>
-    <div id="box_content_mochi_extension" style="
-    transform-origin: right top;
-    transform: translateX(-100%) translateY(0%) scale(1);
-    display: none;
-    position: absolute;
-    max-height: 500px;
-    min-height: 258px;
-    width: 370px;
-    z-index: 2147483000;
-    background-color: white;
-  ">
-        <div style="position:relative">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/button-exit.png" alt="mascot"
-                id="mochi-close-box_content_mochi_extension">
-            <div id="mochi-header">
-                <div class="mochi-login-button" style="display: none;">
-                    <span class="mochi-text-login">Đăng nhập</span>
-                    <img alt="avatar" src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/ellipse-green.png"
-                        style="max-width: 40px">
-                    <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/settings.png"
-                        style="max-width:35px; margin-left:5px" class="setting__popup setting__popup-2">
-                </div>
+    </section>
 
-                <div class="mochi-profile-setting">
-                    <div class="mochi-profile-name">
-                        <span class="mochi-text-login">BÁ CƯỜNG </span><img alt="avatar" style="max-width: 40px"
-                            src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/ellipse-yellow.png">
-                    </div>
-                    <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/settings.png"
-                        style="max-width:35px ;margin-left:5px" class="setting__popup setting__popup-3"
-                        alt="setting_close">
-                </div>
-            </div>
-            <div id="mochi-box-arround-content" style="overflow-y:auto; max-height: 452px"></div>
-        </div>
-    </div>
-    <div class="mochi-modal" style="display: none">
-        <div class="mochi-modal-main mochi-modal-login" style="display: none">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiTutorial.png" alt="mascot"
-                class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-login">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title">
-                    <strong style="display: block">Đăng nhập tài khoản học MochiMochi</strong>
-                    <strong style="display: block">để tra cứu và lưu từ vựng vào sổ tay</strong>
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="mochi-btn-login">
-                        Đăng nhập
-                    </div>
-                    <div class="mochi_secondary_btn" id="mochi-btn-register">
-                        Tạo tài khoản mới
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL FREE USER 30 -->
-
-        <div class="mochi-modal-main mochi-modal-free-over-30" style="display: none;min-height: 210px!important">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiNotification.png" alt="mascot"
-                style="width:160px!important" class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-free-user-upgrade-30">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title">
-                    <strong style="display: block">Bạn đã lưu 30 từ vào sổ tay.</strong>
-                    <strong style="display: block">Nâng cấp tài khoản để lưu từ không giới hạn</strong>
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="btn-mochi-submit-free-30">
-                        Nâng cấp ngay
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MODAL FREE USER 50-->
-
-        <div class="mochi-modal-main mochi-modal-free-over-50" style="display: none;min-height: 210px!important">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiNotification.png" alt="mascot"
-                style="width:160px!important" class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-free-user-upgrade-50">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title">
-                    <strong style="display: block">Bạn đã lưu 50 từ vào sổ tay.</strong>
-                    <strong style="display: block">Nâng cấp tài khoản để lưu từ không giới hạn</strong>
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="btn-mochi-submit-free-50">
-                        Nâng cấp ngay
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PAID USER 100 -->
-
-        <div class="mochi-modal-main mochi-modal-paid-over-100" style="display: none;min-height: 210px!important">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiTutorial.png" alt="mascot"
-                style="width:160px!important" class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-mochi-paid-user-100">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title">
-                    <strong style="display: block">Bạn đang có hơn 100 từ cần ôn tập.</strong>
-                    <strong style="display: block">Ôn tập ngay để lưu thêm từ vào sổ tay.</strong>
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="btn-mochi-submit-100">
-                        Ôn tập ngay
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PAID USER 100 level 1 -->
-
-        <div class="mochi-modal-main mochi-modal-paid-over-100-lv1" style="display: none;min-height: 210px!important">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiTutorial.png" alt="mascot"
-                style="width:160px!important" class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-mochi-paid-user-100-level-1">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title">
-                    <strong style="display: block">Bạn đang có 100 từ vựng level 1.</strong>
-                    <strong style="display: block">Ôn tập ngay để lưu thêm từ vào sổ tay </strong>
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="btn-mochi-submit-100-lv-1">
-                        Ôn tập ngay
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PAID USER UNDERSTAND -->
-
-        <div class="mochi-modal-main mochi-modal-understand" style="display: none;min-height: 210px!important">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiRemind.png" alt="mascot"
-                style="width:160px!important" class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-mochi-understand">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title">
-                    <strong style="display: block">Bạn đã lưu từ thành công.</strong>
-                    <strong style="display: block">Đừng quên ôn tập vào Thời Điểm Vàng để tăng hiệu quả ghi nhớ</strong>
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="btn-mochi-submit-understand">
-                        Mình đã hiểu
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PAID USER DONN'T OPEN WEBSITE YET -->
-
-        <div class="mochi-modal-main mochi-modal-open-web" style="display: none;min-height: 220px!important">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiNotFound.png" alt="mascot"
-                style="width:127px!important" class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-mochi-open-web">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title">
-                    <strong style="display: block">Bạn đã lưu từ thành công.</strong>
-                    <strong style="display: block">Đăng nhập vào website và mở tab SỔ TAY</strong>
-                    <strong style="display: block">Để xem từ vựng vừa lưu</strong>
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="btn-mochi-submit-open-web">
-                        Mở website ngay
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PAID USER NOW GO TO STUDY -->
-
-        <div class="mochi-modal-main mochi-modal-now-study" style="display: none;min-height: 220px!important">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/mochiNotification.png" alt="mascot"
-                style="width:160px!important" class="mochi-modal-mascot">
-            <img src="chrome-extension://ejmmioggcokagpjlajeilkakgphhmmbj/images/cross.png" alt="mascot"
-                class="mochi-modal-close-btn" id="mochi-close-mochi-now-study">
-            <div class="mochi-login-notify">
-                <span class="mochi-modal-title mochi-append-review-count">
-                </span>
-                <div class="mochi-login-notify-group-btn">
-                    <div class="mochi_primary_btn" id="btn-mochi-submit-now-study">
-                        Ôn tập ngay
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <!-- <script src="/js/script.js"></script>
+    <script src="{{script}}"></script>  -->
 </body>
-<div id="edge-translate-notifier-container" class="edge-translate-notifier-center"></div>
-<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
 
 </html>
