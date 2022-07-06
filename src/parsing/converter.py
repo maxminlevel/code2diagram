@@ -10,16 +10,15 @@ from parsing.parser import Parser
 from parsing.lexer import Lexer
 
 class Converter(ABC):
-    def convert(self, filePath) -> None:
-        fileFormat, fileContent = self.readFile(filePath)
+    def convert(self, inputFile, outputFile) -> None:
+        fileFormat, fileContent = self.readFile(inputFile)
         listTokens = self.parseToTokens(fileFormat, fileContent)
         umlGraph = self.convertToGraph(listTokens)
-        print(umlGraph)
         graph = umlGraph.toDotGraph()
-        graph.render('test-output/umlGraph.gv', view=True)
+        graph.render(outputFile, view=False)
     
     @abstractmethod
-    def readFile(self, filePath) -> FileContent:
+    def readFile(self, inputFile) -> FileContent:
         pass
 
     @abstractmethod
@@ -32,8 +31,8 @@ class Converter(ABC):
 
 
 class DotConverter(Converter):
-    def readFile(self, filePath) -> FileContent:
-        fileReader = Reader(filePath)
+    def readFile(self, inputFile) -> FileContent:
+        fileReader = Reader(inputFile)
         fileReader.stragety()
         return fileReader.extension[1:], fileReader.get_output()
 

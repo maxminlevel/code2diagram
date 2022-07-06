@@ -11,6 +11,46 @@ class UMLGraph:
         self.edges = []
         self.mapNodeToGroupId = dict()
         self.groupIds = set()
+        self.defaultGraphStyles = {
+            'graph': {
+                'rankdir': 'TB',
+                'bgcolor': 'white',
+                'fontsize': '16',
+                'fontcolor': 'black',
+                'fontname': 'Arial',
+                'splines': 'ortho',
+                'nodesep': '0.5',
+                'ranksep': '0.5'
+            },
+            'node': {
+                'fontsize': '16',
+                'fontcolor': 'black',
+                'fontname': 'Arial',
+                'style': 'filled',
+                'fillcolor': 'white',
+                'height': '0.5',
+                'width': '0.5'
+            },
+            'edge': {
+                'fontsize': '16',
+                'fontcolor': 'black',
+                'fontname': 'Arial',
+                'arrowsize': '0.5'
+            }
+        }
+        self.defaultSubgraphStyles = {
+            'graph': {
+                'color': 'blue',
+            },
+            'node': {
+                'style': 'filled',
+                'color': 'blue',
+            },
+            'edge': {
+                'color': 'black'
+            }
+        }
+        
 
     @singledispatchmethod
     def add(self, graphObj):
@@ -28,20 +68,28 @@ class UMLGraph:
         self.edges.append(edge)
 
     def isEdgeInGroup(self, edge: Edge, groupId: str):
-        return self.mapNodeToGroupId[edge.srcId] == groupId and self.mapNodeToGroupId[edge.dstId] == groupId
+        if edge.srcId in self.mapNodeToGroupId and edge.dstId in self.mapNodeToGroupId:
+            return self.mapNodeToGroupId[edge.srcId] == self.mapNodeToGroupId[edge.dstId] and self.mapNodeToGroupId[edge.srcId] == groupId
+        return False
         
     def toDotGraph(self):
-        graph = graphviz.Digraph(comment="UML Graph")
+        graph = graphviz.Digraph(comment="UML Graph", format="png")
+        graph.graph_attr.update(self.defaultGraphStyles['graph'])
+        graph.node_attr.update(self.defaultGraphStyles['node'])
+        graph.edge_attr.update(self.defaultGraphStyles['edge'])
         for node in self.nodes:
-            graph.node(node.toDotArgs())
+            id, name, attributes = node.toDotArgs()
+            graph.node(id, label=name, **attributes)
         for edge in self.edges:
-            if self.mapNodeToGroupId[edge.srcId] and self.mapNodeToGroupId[edge.dstId]:
+            if edge.srcId in self.mapNodeToGroupId and edge.dstId in self.mapNodeToGroupId:
                 continue
-            graph.edge(edge.toDotArgs())
+            src, target = edge.toDotArgs()
+            graph.edge(src, target)
         for groupId in self.groupIds:
-            with graph.subgraph(name=groupId) as subGraph:
-                subGraph.attr(style='filled', color='lightgrey')
-                subGraph.node_attr.update(style='filled', color='white')
+            subgraphName = "cluster_" + groupId
+            with graph.subgraph(name=subgraphName) as subGraph:
+                subGraph.attr(**self.defaultSubgraphStyles['graph'])
+                subGraph.node_attr.update(**self.defaultSubgraphStyles['node'])
+                subGraph.edge_attr.update(**self.defaultSubgraphStyles['edge'])
                 subGraph.edges([(edge.srcId, edge.dstId) for edge in self.edges if self.isEdgeInGroup(edge, groupId)])
-                subGraph.attr(label=groupId)
         return graph
