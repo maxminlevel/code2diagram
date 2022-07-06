@@ -9,12 +9,12 @@ class TypeToken(enum.Enum):
     Arrow = ARROW_TYPE
 
 class TypeRelation(enum.Enum):
-    ISA = 1
-    Extend = 2
-    Include = 3
-    OneToOne = 4
-    OneToMany = 5
-    ManyToMany = 6
+    ISA = 'isa'
+    Extend = 'extend'
+    Include = 'include'
+    OneToOne = 'oneToOne'
+    OneToMany = 'oneToMany'
+    ManyToMany = 'manyToMany'
 
 class Token(object):
     __typeToken = None
@@ -41,7 +41,7 @@ class ActorToken(Token):
     __groupId = None
     def __init__(self, typeToken, uid, name, groupId = None):
         super().__init__(typeToken, uid)
-        self.__name = '\n\n\n\n\n\n'+name
+        self.__name = name
         self.__groupId = groupId
 
     @property
@@ -57,13 +57,14 @@ class ActorToken(Token):
 
 class ArrowToken(Token):
     __source = None
-    __target = None      
+    __target = None
     __typeRelation = None   #Type of relation of arrow
-    def __init__(self, typeToken, source, target, typeRelation: TypeRelation):
+    def __init__(self, typeToken, source, target, typeRelation: TypeRelation, attribute = None):
         super().__init__(typeToken)
         self.__source = source
         self.__target = target
         self.__typeRelation = typeRelation
+        self.__attribute = attribute
 
     @property
     def source(self):
@@ -76,6 +77,10 @@ class ArrowToken(Token):
     @property
     def typeRelation(self):
         return self.__typeRelation
+
+    @property
+    def attribute(self):
+        return self.__attribute
 
     def __str__(self) -> str:
         return self.type + " " + str(self.source) + " " + str(self.target) + " " + str(self.typeRelation)

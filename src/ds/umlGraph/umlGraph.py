@@ -43,8 +43,6 @@ class UMLGraph:
                 'color': 'blue',
             },
             'node': {
-                'style': 'filled',
-                'color': 'blue',
             },
             'edge': {
                 'color': 'black'
@@ -91,7 +89,11 @@ class UMLGraph:
                 subGraph.attr(**self.defaultSubgraphStyles['graph'])
                 subGraph.node_attr.update(**self.defaultSubgraphStyles['node'])
                 subGraph.edge_attr.update(**self.defaultSubgraphStyles['edge'])
-                subGraph.edges([(edge.toDotArgs()) for edge in self.edges if self.isEdgeInGroup(edge, groupId)])
+                edges = []
+                for edge in self.edges:
+                    if self.isEdgeInGroup(edge, groupId):
+                        src, target, styles = edge.toDotArgs()
+                        subGraph.edge(src, target, **styles)
         return graph
 
     def withGraphStyles(self, graphStyles):
