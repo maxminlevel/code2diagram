@@ -1,5 +1,5 @@
-from distutils.log import debug
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, send_file, request, redirect, url_for
+import json
 app = Flask(__name__)
 
 @app.route("/")
@@ -16,13 +16,5 @@ def convert():
   #do something
   return "convert"
   
-@app.route('/upload_file')
-def upload_file():
-  #do something
-  return "upload"
-  
-
-  
-
 if __name__ == "__main__":
   app.run()
