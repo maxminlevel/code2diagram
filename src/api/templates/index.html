@@ -25,11 +25,11 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <h2 class="fw-normal mb-0 text-black">Content To Diagram</h2>
-                    <div>
+                    <a href="{{ url_for('.convert')}}">
                         <button type="button" class="btn btn-primary">
                             <i class="bi bi-arrow-left-right me-1"></i>Convert
                         </button>
-                    </div>
+                    </a>
                 </div>
 
             </div>
@@ -48,9 +48,12 @@
                                     <option value="xml">XML</option>
                                     <option value="csv">CSV</option>
                                 </select>
-                                <button type="button" class="btn btn-primary">
-                                    <i class="bi bi-upload me-1"></i> Upload File
-                                </button>
+                                <a href="{{ url_for('.upload_file')}}">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="bi bi-upload me-1"></i> Upload File
+                                    </button>
+                                </a>
+
                             </div>
                         </div>
                         <div class="form-outline">

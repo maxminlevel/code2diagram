@@ -11,14 +11,15 @@ def download_image():
 	path = "./static/images/usecase.png"
 	return send_file(path, as_attachment=True)
 
+@app.route('/convert')
 def convert():
   #do something
-  print("convert")
+  return "convert"
   
-
+@app.route('/upload_file')
 def upload_file():
   #do something
-  print("upload")
+  return "upload"
   
 
   
