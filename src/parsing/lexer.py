@@ -26,5 +26,7 @@ class Lexer(object):
             raise TypeError("This type isn't supported: {}".format(type(typeFileContent)))
         return lexerMethod
 
-
+lexer = Lexer()
+li = lexer.analyze(obj)
+print(li)
 

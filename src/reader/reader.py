@@ -33,3 +33,10 @@ class Reader():
 
     def get_output(self):
         return self.fileContent
+
+
+r = Reader("dict.xml")
+r.stragety()
+s = r.get_output().data
+for child in s:
+    print(child.tag, child.attrib)

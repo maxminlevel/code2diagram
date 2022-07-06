@@ -49,12 +49,12 @@ class ActorToken(Token):
 class ArrowToken(Token):
     __source = None
     __target = None      
-    __typeRelation = None   #Type of relation of arrow
-    def __init__(self, typeToken, source, target, typeRelation: TypeRelation):
+    __typeRelations = None   #Type of relation of arrow
+    def __init__(self, typeToken, source, target, typeRelations: list(TypeRelation)):
         super().__init__(typeToken)
         self.__source = source
         self.__target = target
-        self.__typeRelation = typeRelation
+        self.__typeRelations = typeRelations
 
     @property
     def getSource(self):
@@ -65,11 +65,11 @@ class ArrowToken(Token):
         return self.__target
 
     @property
-    def getTypeRelation(self):
-        return self.__typeRelation
+    def getTypeRelations(self):
+        return self.__typeRelations
 
     def __str__(self) -> str:
-        return self.getTypeToken + " " + str(self.getSource) + " " + str(self.getTarget) + " " + str(self.getTypeRelation)
+        return self.getTypeToken + " " + str(self.getSource) + " " + str(self.getTarget) + " " + str(self.getTypeRelations)
 
 class UsecaseToken(Token):
     __name = None         #Name of usecase
