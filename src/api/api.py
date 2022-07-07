@@ -2,19 +2,16 @@ from flask import Flask, render_template, send_file, request, redirect, url_for
 import json
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def homepage():
-  if request.method == "POST":
-        jsonData = request.get_json()
-        print(jsonData)
-        return {
-            'response' : 'I am the response'
-        }
   return render_template('index.html')
 
-@app.route('/convert')
+@app.route('/convert', methods=['POST'])
 def convert():
-  #do something
+  jsonData = request.get_json()
+  return {
+      'response' : 'I am the response'
+  }
   return "convert"
   
 if __name__ == "__main__":
