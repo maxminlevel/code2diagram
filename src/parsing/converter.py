@@ -10,19 +10,19 @@ from parsing.parser import Parser
 from parsing.lexer import Lexer
 
 class Converter(ABC):
-    def convert(self, filePath) -> None:
-        fileContent = self.readFile(filePath)
-        listTokens = self.parseToTokens(fileContent.data)
+    def convert(self, inputFile, outputFile) -> None:
+        fileFormat, fileContent = self.readFile(inputFile)
+        listTokens = self.parseToTokens(fileFormat, fileContent)
         umlGraph = self.convertToGraph(listTokens)
         graph = umlGraph.toDotGraph()
-        graph.render('test-output/umlGraph.gv', view=True)
+        graph.render(outputFile, view=False)
     
     @abstractmethod
-    def readFile(self, filePath) -> FileContent:
+    def readFile(self, inputFile) -> FileContent:
         pass
 
     @abstractmethod
-    def parseToTokens(self, fileContent: FileContent) -> List[Token]:
+    def parseToTokens(self, fileFormat: str, fileContent: FileContent) -> List[Token]:
         pass
 
     @abstractmethod
@@ -31,13 +31,13 @@ class Converter(ABC):
 
 
 class DotConverter(Converter):
-    def readFile(self, filePath) -> FileContent:
-        fileReader = Reader(filePath)
+    def readFile(self, inputFile) -> FileContent:
+        fileReader = Reader(inputFile)
         fileReader.stragety()
-        return fileReader.get_output()
+        return fileReader.extension[1:], fileReader.get_output()
 
-    def parseToTokens(self, fileContent: FileContent) -> List[Token]:
-        lexer = Lexer()
+    def parseToTokens(self, fileFormat: str, fileContent) -> List[Token]:
+        lexer = Lexer(fileFormat)
         return lexer.analyze(fileContent)
 
     def convertToGraph(self, tokens: List[Token]) -> UMLGraph:

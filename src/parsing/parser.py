@@ -15,7 +15,7 @@ class Parser:
         CLASS_TYPE: NodeFactory
     }
     @staticmethod
-    def parse(tokens):
+    def parse(tokens) -> UMLGraph:
         graph = UMLGraph()
         for token in tokens:
             factory = Parser.tokenToFactory[token.type]

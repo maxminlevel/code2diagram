@@ -8,13 +8,13 @@ class TypeToken(enum.Enum):
     Class = CLASS_TYPE
     Arrow = ARROW_TYPE
 
-class TypeRelation(enum.Enum):
-    ISA = 1
-    Extend = 2
-    Include = 3
-    OneToOne = 4
-    OneToMany = 5
-    ManyToMany = 6
+class TypeRelation:
+    ISA = 'isa'
+    Extend = 'extend'
+    Include = 'include'
+    OneToOne = 'oneToOne'
+    OneToMany = 'oneToMany'
+    ManyToMany = 'manyToMany'
 
 class Token(object):
     __typeToken = None
@@ -24,11 +24,11 @@ class Token(object):
         self.__idToken = uid
 
     @property
-    def getType(self):
+    def type(self):
         return self.__typeToken
 
     @property
-    def getIdToken(self):
+    def id(self):
         return self.__idToken
 
     def __str__(self) -> str:
@@ -41,15 +41,15 @@ class ActorToken(Token):
     __groupId = None
     def __init__(self, typeToken, uid, name, groupId = None):
         super().__init__(typeToken, uid)
-        self.__name = name
+        self.__name = '\n\n\n\n\n\n'+name
         self.__groupId = groupId
 
     @property
-    def getName(self):
+    def name(self):
         return self.__name
 
     @property
-    def getGroupId(self):
+    def groupId(self):
         return self.__groupId
 
     def __str__(self) -> str:
@@ -57,28 +57,27 @@ class ActorToken(Token):
 
 class ArrowToken(Token):
     __source = None
-    __target = None      
-    __typeRelation = None   #Type of relation of arrow
-    def __init__(self, typeToken, source, target, typeRelation: TypeRelation):
+    __target = None
+    def __init__(self, typeToken, source, target, attribute = None):
         super().__init__(typeToken)
         self.__source = source
         self.__target = target
-        self.__typeRelation = typeRelation
+        self.__attribute = attribute
 
     @property
-    def getSource(self):
+    def source(self):
         return self.__source
 
     @property
-    def getTarget(self):
+    def target(self):
         return self.__target
 
     @property
-    def getTypeRelation(self):
-        return self.__typeRelation
+    def attribute(self):
+        return self.__attribute
 
     def __str__(self) -> str:
-        return self.type + " " + str(self.getSource) + " " + str(self.getTarget) + " " + str(self.getTypeRelation)
+        return self.type + " " + str(self.source) + " " + str(self.target)
 
 class UsecaseToken(Token):
     __name = None         #Name of usecase

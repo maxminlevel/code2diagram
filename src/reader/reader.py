@@ -32,4 +32,4 @@ class Reader():
         return method
 
     def get_output(self):
-        return self.fileContent
+        return self.fileContent.data

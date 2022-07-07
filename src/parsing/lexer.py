@@ -25,11 +25,3 @@ class Lexer(object):
         if not lexerMethod:
             raise TypeError("This type isn't supported: {}".format(type(typeFileContent)))
         return lexerMethod
-
-lexer = Lexer("json")
-listTokens = lexer.analyze(obj)
-print(listTokens)
-
-
-
-
