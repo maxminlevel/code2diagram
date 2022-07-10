@@ -162,3 +162,5 @@ cython_debug/
 .env
 docker/docker-compose.yml
 **output**
+
+**/session

@@ -2,4 +2,4 @@ from parsing.converter import DotConverter
 
 
 converter = DotConverter()
-converter.convert("src/test.json", "test-output/graph")
+converter.convert("src/a.json", "test-output/graph")
